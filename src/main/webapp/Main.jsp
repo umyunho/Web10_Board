@@ -43,7 +43,12 @@
 					<div class="col">
 						<a style="text-decoration: none;" href="board.do?command=boardView&num=${board.num}">
 							${board.title}
-						</a>
+						</a>&nbsp;
+						<c:if test="${board.replycnt >0 }">
+							<span style="color:red; font-weight: bold">
+							[${board.replycnt }]
+							</span>
+						</c:if>
 					</div>
 					<div class="col">${board.userid}</div>
 					<div class="col"><fmt:formatDate value="${board.writedate}"/> </div>
@@ -51,6 +56,48 @@
 				</div>
 			</c:forEach>
 		</div>
+		<div class="paging" >
+			<!-- prev버튼 표시 여부 -->
+			<c:if test="${paging.prev }">
+				<a href="board.do?command=main&page=${paging.beginPage-1 }">◀</a>&nbsp;
+			</c:if>
+			
+			<!-- beginPage부터 endPage까지 일렬로 페이지를 표시 -->
+			<c:forEach begin="${paging.beginPage }" end="${paging.endPage }" var="index">
+				<c:if test="${paging.page == index }">
+					<span style="color:red">&nbsp;${index }&nbsp;</span>
+				</c:if>
+				<c:if test="${paging.page != index }">
+				<a href="board.do?command=main&page=${index}">&nbsp;${index}&nbsp;</a>
+				</c:if>
+			</c:forEach>
+			
+			<!-- next버튼 표시여부 -->
+			<c:if test="${paging.next}">
+				<a href="board.do?command=main&page=${paging.endPage+1 }">▶</a>&nbsp;
+			</c:if>
+		</div>
 	</div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

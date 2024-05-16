@@ -84,6 +84,8 @@ insert into reply(boardnum, userid, content) values(6, 'hong2', '어쩔티비,�
 
 select* from reply;
 
+select*from board limit 10 offset 10;
+
 
 
 

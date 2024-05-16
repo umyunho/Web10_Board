@@ -11,8 +11,18 @@ public class BoardDto {
 	private String content;
 	private int readcount;
 	private Timestamp writedate;
+	private int replycnt;
 	
 	
+	
+	public int getReplycnt() {
+		return replycnt;
+	}
+
+	public void setReplycnt(int replycnt) {
+		this.replycnt = replycnt;
+	}
+
 	public BoardDto() {
 		
 	}

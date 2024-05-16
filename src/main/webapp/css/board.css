@@ -215,7 +215,10 @@ border :1px dotted blue;}
 .reply_col:nth-child(4){ flex:1;}
 .reply_title{background:blue; color: white;}
 
-
+.paging{display: flex; justify-content: center; 
+			pagging:20px; font-size: 110%; font-weight: bold;}
+			
+a{text-decoration:none;}
 
 @media ( max-width :768px) {
 	.login-form {
