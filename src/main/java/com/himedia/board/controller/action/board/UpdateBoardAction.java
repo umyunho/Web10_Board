@@ -40,7 +40,7 @@ public class UpdateBoardAction implements Action {
 		String fileName="";
 		String saveFilename = "";
 		for( Part p: request.getParts() ) {
-			System.out.println(p.getHeader("content-disposition") ); 
+			//System.out.println(p.getHeader("content-disposition") ); 
 			fileName = "";
 			for (String content : p.getHeader("content-disposition").split(";")) {
 			      if(content.trim().startsWith("filename")) { 
