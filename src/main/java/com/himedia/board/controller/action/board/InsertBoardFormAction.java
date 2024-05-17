@@ -12,7 +12,9 @@ public class InsertBoardFormAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.getRequestDispatcher("board/insertBoardForm.jsp").forward(request, response);
+
 	}
 
 }

@@ -3,6 +3,7 @@ package com.himedia.board.dto;
 import java.sql.Timestamp;
 
 public class BoardDto {
+
 	private int num;
 	private String pass;
 	private String userid;
@@ -12,32 +13,26 @@ public class BoardDto {
 	private int readcount;
 	private Timestamp writedate;
 	private int replycnt;
+	private String image;
+	private String savefilename;
 	
-	
-	
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	public String getSavefilename() {
+		return savefilename;
+	}
+	public void setSavefilename(String savefilename) {
+		this.savefilename = savefilename;
+	}
 	public int getReplycnt() {
 		return replycnt;
 	}
-
 	public void setReplycnt(int replycnt) {
 		this.replycnt = replycnt;
-	}
-
-	public BoardDto() {
-		
-	}
-	
-	public BoardDto(int num, String pass, String userid, String email, String title, String content, int readcount,
-			Timestamp writedate) {
-		super();
-		this.num = num;
-		this.pass = pass;
-		this.userid = userid;
-		this.email = email;
-		this.title = title;
-		this.content = content;
-		this.readcount = readcount;
-		this.writedate = writedate;
 	}
 	
 	public int getNum() {
@@ -88,11 +83,6 @@ public class BoardDto {
 	public void setWritedate(Timestamp writedate) {
 		this.writedate = writedate;
 	}
-
-
-	
-	
-	
 	
 	
 }

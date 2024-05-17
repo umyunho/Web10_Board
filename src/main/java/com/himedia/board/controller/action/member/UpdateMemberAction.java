@@ -17,18 +17,22 @@ public class UpdateMemberAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		MemberDto mdto = new MemberDto(request.getParameter("userid"),request.getParameter("name"),request.getParameter("pwd"),request.getParameter("email"),request.getParameter("phone"));
+		MemberDto mdto = new MemberDto();
+		mdto.setUserid(request.getParameter("userid"));
+		mdto.setName(request.getParameter("name"));
+		mdto.setPwd(request.getParameter("pwd"));
+		mdto.setPhone(request.getParameter("phone"));
+		mdto.setEmail(request.getParameter("email"));
 		
 		MemberDao mdao = MemberDao.getInstance();
 		int result = mdao.updateMember(mdto);
-		if(result == 1) {
+		
+		if( result == 1) {// 수정된 정보로 세션의  loginUser 수정 업데이트 합니다
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", mdto);
-			//loginUser 속성을 update한 유저정보를 담은 mdto로 덮어씌움 		
 		}
-		RequestDispatcher rd = request.getRequestDispatcher("board.do?command=main");
-		rd.forward(request, response);
-		
+		RequestDispatcher dp = request.getRequestDispatcher("board.do?command=main");
+		dp.forward(request, response);
 	}
 
 }

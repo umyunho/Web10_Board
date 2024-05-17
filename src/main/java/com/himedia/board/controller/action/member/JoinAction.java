@@ -16,30 +16,30 @@ public class JoinAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		MemberDto mdto = new MemberDto(request.getParameter("userid"), request.getParameter("name"), request.getParameter("pwd"), request.getParameter("email"), request.getParameter("phone"));
+		MemberDto mdto = new MemberDto();
+		
+		mdto.setUserid(request.getParameter("userid"));
+		mdto.setName(request.getParameter("name"));
+		mdto.setPwd(request.getParameter("pwd"));
+		mdto.setEmail(request.getParameter("email"));
+		mdto.setPhone(request.getParameter("phone"));
 		
 		MemberDao mdao = MemberDao.getInstance();
-		int result = mdao.insertMember(mdto);
+		int result = mdao.insertMember( mdto );
 		
 		String message = "";
-		if (result == 1) {
-			message = "회원가입이 완료되었습니다. 로그인하세요.";
-		}else {
-			message = "회원가입이 실패하였습니다. 관리자에게 문의해주세요.";
-		}
+		if( result==1) message = "회원가입이 완료되었습니다. 로그인하세요";
+		else message = "회원가입이 실패했습니다. 관리자에게 문의하세요";
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("message", message);
 		
-		//레코드를 추가하는 기능에는 절대 forward XXXXXXX
-		//forward를 사용할 경우 parameter가 그대로 url에 오기 때문에
-		//직전에 추가된 record를 그대로 중복추가하게 됨
-		// - > 기본키 오류가 발생한다
-		//따라서 위와 같은 오류를 내지 않으려면 forward 대신 sendRedirect로 보내주고
-		//forward와 다르게 parameter가 가지 않으므로 따로 지정해주자
-		
-		response.sendRedirect("board.do?command=loginForm");
-		
+		// 모든 기능중에 레코드를 추가하는 기능에는  마지막 명령으로  forward 를 쓰지 않습니다
+		// forward 를 쓸경우 "새로고침" 누를 시에   회원가입을 위해서 입력한 내용부터 다시 실행되서 
+		// 중복레코드를 추가하려고 시도합니다. 
+		// 이때 기본키 오류가 발생
+		response.sendRedirect( "board.do?command=loginForm" );
+
 	}
 
 }

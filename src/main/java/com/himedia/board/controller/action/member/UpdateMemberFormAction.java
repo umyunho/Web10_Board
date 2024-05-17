@@ -15,8 +15,6 @@ public class UpdateMemberFormAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("member/updateMemberForm.jsp");
 		rd.forward(request, response);
-		
-		
 	}
 
 }

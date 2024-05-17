@@ -20,21 +20,16 @@ public class DeleteMemberAction implements Action {
 		MemberDto mdto = (MemberDto)session.getAttribute("loginUser");
 		
 		MemberDao mdao = MemberDao.getInstance();
-		int result = mdao.deleteMember(mdto.getUserid());
+		int result = mdao.deleteMember( mdto.getUserid() );
 		
 		session.invalidate();
 		
-		if(result == 1) {
-			request.setAttribute("message", "회원정보가 정상적으로 삭제되었습니다.");			
-		} else {
-			request.setAttribute("message", "회원탈퇴에 실패하였습니다. 다시 시도하세요.");	
+		if( result == 1) {
+			request.setAttribute("message", "회원정보가 정상적으로 삭제되었습니다");
+		}else {
+			request.setAttribute("message", "회원탈퇴가 정상적으로 완료되지 못했습니다. 다음에 다시 시도하세요");
 		}
-		
 		request.getRequestDispatcher("member/loginForm.jsp").forward(request, response);
-
-		
-		
-		
 	}
 
 }

@@ -8,18 +8,6 @@ public class MemberDto {
 	private String email;
 	private String phone;
 	
-	public MemberDto () {}
-	
-	public MemberDto(String userid, String name, String pwd, String email, String phone) {
-		super();
-		this.userid = userid;
-		this.name = name;
-		this.pwd = pwd;
-		this.email = email;
-		this.phone = phone;
-	}
-	
-	
 	public String getUserid() {
 		return userid;
 	}
@@ -50,8 +38,5 @@ public class MemberDto {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
 	
-	
-
 }
